@@ -1,5 +1,3 @@
-"use strict";
-
 const initialFacts = [
   {
     id: 1,
