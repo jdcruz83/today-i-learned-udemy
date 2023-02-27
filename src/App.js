@@ -103,12 +103,37 @@ function Header({ showForm, setShowForm }) {
 
 function NewFactForm() {
   const [text, setText] = useState("");
-  const [source, setSource] = useState("");
+  const [source, setSource] = useState("http://www.example.com");
   const [category, setCategory] = useState("");
   const textLength = text.length;
 
+  function handleSubmit(e) {
+    //TODO: 1. Prevent browser reload
+    e.preventDefault();
+    console.log(text, source, category);
+
+    //TODO: 2. Check if data is valid, if true, create new fact
+    if (text && isValidHttpUrl(source) && category && textLength <= 200) {
+      //TODO: 3. Create a new fact object
+      const newFact = {
+        id: Math.round(Math.random() * 10000000),
+        text,
+        source,
+        category,
+        votesInteresting: 0,
+        votesMindblowing: 0,
+        votesFalse: 0,
+        createdIn: new Date().getCurrentYear(),
+      };
+
+      //TODO: 4. Add the new fact to the UI, add it to state
+      //TODO: 5. Reset input fields
+      //TODO: 6. Close the form / hide it again
+    }
+  }
+
   return (
-    <form className="fact-form">
+    <form className="fact-form" onSubmit={handleSubmit}>
       <input
         type="text"
         placeholder="Share a fact with the world..."
@@ -134,6 +159,16 @@ function NewFactForm() {
       <button className="btn btn-large">Post</button>
     </form>
   );
+}
+
+function isValidHttpUrl(string) {
+  let url;
+  try {
+    url = new URL(string);
+  } catch (_) {
+    return false;
+  }
+  return url.protocol === "http:" || url.protocol === "https:";
 }
 
 function CategoryFilter() {
