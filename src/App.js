@@ -265,7 +265,6 @@ function CategoryFilter({ setCurrentCategory }) {
 }
 
 function FactList({ facts, setFacts }) {
-  console.log(facts[0]);
   if (facts.length === 0) {
     return (
       <p className="message">
