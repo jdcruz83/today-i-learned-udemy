@@ -7,3 +7,4 @@ This covers HTML and CSS, Vanilla JavaScript and the ReactJS framework.
 
 - Hide overflow-y, was showing in certain window sizes;
 - Changed to `overflow: auto;` Was showing scroll bar when not necessary;
+- Added the category to the `<span class="tag"></span>` below Facts list;

@@ -108,7 +108,11 @@ function App() {
         {isLoading ? (
           <Loader />
         ) : (
-          <FactList facts={facts} setFacts={setFacts} />
+          <FactList
+            facts={facts}
+            setFacts={setFacts}
+            currentCategory={currentCategory}
+          />
         )}
       </main>
     </>
@@ -264,7 +268,7 @@ function CategoryFilter({ setCurrentCategory }) {
   );
 }
 
-function FactList({ facts, setFacts }) {
+function FactList({ facts, setFacts, currentCategory }) {
   if (facts.length === 0) {
     return (
       <p className="message">
@@ -280,7 +284,28 @@ function FactList({ facts, setFacts }) {
           <Fact key={fact.id} fact={fact} setFacts={setFacts} />
         ))}
       </ul>
-      <p>There are {facts.length} facts in the database. Add your own!</p>
+      {currentCategory === "all" ? (
+        <p>
+          There are a total of {facts.length} facts of
+          <span className="tag">all categories</span>in the database. Add your
+          own!
+        </p>
+      ) : (
+        <p>
+          There are {facts.length} facts about{" "}
+          <span
+            className="tag"
+            style={{
+              backgroundColor: CATEGORIES.find(
+                (cat) => cat.name === currentCategory
+              ).color,
+            }}
+          >
+            {currentCategory}
+          </span>{" "}
+          in the database. Add your own!
+        </p>
+      )}
     </section>
   );
 }
