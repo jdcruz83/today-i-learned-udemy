@@ -41,7 +41,7 @@ body {
 }
 
 section {
-  overflow: scroll;
+  overflow: auto;
   padding-bottom: 40px;
   overflow-x: hidden;
 }
